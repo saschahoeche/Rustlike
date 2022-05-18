@@ -1,5 +1,5 @@
 [package]
-name = "Rustlike"
+name = "rustlike"
 version = "0.1.0"
 edition = "2021"
 
