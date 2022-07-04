@@ -20,8 +20,8 @@ to save the day - and sets forth into the dungeon.
 - Locate the exit to the level - repeat
 
 ### Minimum Viable Product (MVP)
-1. Create a basic dungeon map []
-2. Place the player and let them walk around []
+1. Create a basic dungeon map [x]
+2. Place the player and let them walk around [x]
 3. Spawn monsters, draw them, and let the player kill them by walking into them []
 4. Add health and a combat system that uses it []
 5. Add healing potions []
