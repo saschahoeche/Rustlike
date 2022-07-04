@@ -1,5 +1,4 @@
 use crate::prelude::*;
-use std::intrinsics::truncf32;
 
 const NUM_ROOMS: usize = 20;
 
@@ -23,9 +22,9 @@ impl MapBuilder {
                 rng.range(2, 10),
             );
             let mut overlap = false;
-            for t in self.rooms.iter() {
+            for r in self.rooms.iter() {
                 if r.intersect(&room) {
-                    overlap + true;
+                    overlap = true;
                 }
             }
             if !overlap {
@@ -51,7 +50,7 @@ impl MapBuilder {
 
     fn apply_horizontal_tunnel(&mut self, x1: i32, x2: i32, y: i32) {
         use std::cmp::{max, min};
-        for y in min(x1, x2)..=max(x1, x2) {
+        for x in min(x1, x2)..=max(x1, x2) {
             if let Some(idx) = self.map.try_idx(Point::new(x, y)) {
                 self.map.tiles[idx as usize] = TileType::Floor;
             }
@@ -74,5 +73,18 @@ impl MapBuilder {
                 self.apply_horizontal_tunnel(prev.x, new.x, new.y);
             }
         }
+    }
+
+    pub fn new(rng: &mut RandomNumberGenerator) -> Self {
+        let mut mb = MapBuilder{
+            map: Map::new(),
+            rooms: Vec::new(),
+            player_start: Point::zero(),
+        };
+        mb.fill(TileType::Wall);
+        mb.build_random_rooms(rng);
+        mb.build_corridors(rng);
+        mb.player_start = mb.rooms[0].center();
+        mb
     }
 }
