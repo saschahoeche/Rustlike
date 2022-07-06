@@ -37,3 +37,7 @@ to save the day - and sets forth into the dungeon.
 6. Move to a data-driven design for spawning enemies []
 7. Consider some visual effects to make combat more visceral []
 8. Consider keeping score []
+
+### How To
+Check the binaries folder for your operating system and start the binary to have a
+look at the current development stage.
